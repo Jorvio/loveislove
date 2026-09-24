@@ -7,7 +7,7 @@ Site estático feito em HTML + CSS + JavaScript.
 - `style.css` — visual, responsividade e animações
 - `script.js` — animações de entrada
 - `assets/photos/` — fotos do casal
-- `assets/decor/` — elementos decorativos enviados
+- `assets/decor/` — ícones individuais recortados dos painéis decorativos
 
 ## Música
 O botão da música abre diretamente o Spotify usando o link fornecido.

@@ -29,24 +29,38 @@ body:before{
 }
 a{color:inherit}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:10}
-.decor{position:absolute;pointer-events:none;z-index:0;opacity:.45;filter:saturate(.75)}
-.decor-heart{width:280px;left:-90px;top:120px;transform:rotate(-9deg)}
-.decor-camera{width:270px;right:-75px;top:430px;transform:rotate(7deg);opacity:.28}
+.decor-layer{
+  position:absolute;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:0;
+}
+.decor-item{
+  position:absolute;
+  width:auto;
+  height:auto;
+  object-fit:contain;
+  opacity:.78;
+  filter:saturate(.78);
+  mix-blend-mode:multiply;
+  transition:transform .5s ease, opacity .3s ease;
+}
+.d-heart{width:145px;left:3%;top:85px;transform:rotate(-8deg)}
+.d-note{width:125px;right:7%;top:120px;transform:rotate(7deg)}
+.d-memories{width:125px;left:8%;top:520px;transform:rotate(-4deg)}
+.d-moon{width:145px;right:5%;top:600px;transform:rotate(5deg)}
+.d-bandage{width:58px;left:18%;top:760px;transform:rotate(-13deg)}
+.d-camera{width:175px;right:3%;top:930px;transform:rotate(5deg)}
+.d-loved{width:110px;left:4%;top:1120px;transform:rotate(-6deg)}
+.d-stars{width:155px;right:7%;top:1250px;transform:rotate(4deg)}
+.d-lips{width:125px;left:7%;top:1480px;transform:rotate(-5deg)}
+.d-soulmate{width:165px;right:4%;top:1610px;transform:rotate(5deg)}
+.d-cars{width:150px;left:3%;top:1830px;transform:rotate(-3deg)}
+.d-flower{width:125px;right:8%;top:2020px;transform:rotate(5deg)}
+.d-sticks{width:120px;left:8%;top:2240px;transform:rotate(-4deg)}
+.d-monkey{width:110px;right:8%;top:2440px;transform:rotate(5deg)}
 
-.hero{
-  min-height:100svh;
-  display:flex; align-items:center; justify-content:center;
-  padding:70px 20px 50px;
-  position:relative;
-}
-.hero-inner{max-width:900px;width:100%;text-align:center;position:relative;z-index:1}
-.eyebrow,.tiny,.section-label{
-  text-transform:uppercase;
-  letter-spacing:.18em;
-  font-size:.72rem;
-  color:var(--rose);
-  font-weight:600;
-}
 h1,h2{font-family:"Playfair Display",serif}
 h1{
   font-size:clamp(4rem,11vw,8.5rem);
@@ -169,8 +183,17 @@ h1 span{font-family:"Caveat",cursive;color:var(--rose);font-weight:400}
 footer{text-align:center;padding:25px;color:#9a898c;font-family:"Caveat",cursive;font-size:1.3rem}
 
 @media(max-width:700px){
-  .decor-heart{width:190px;left:-80px;top:70px}
-  .decor-camera{width:180px;right:-70px;top:420px}
+  .decor-item{opacity:.5}
+  .d-heart{width:90px;left:-15px;top:70px}
+  .d-note{width:85px;right:-5px;top:150px}
+  .d-memories{width:80px;left:-5px;top:520px}
+  .d-moon{width:90px;right:-10px;top:620px}
+  .d-camera{width:110px;right:-15px;top:1020px}
+  .d-loved{width:80px;left:-10px;top:1250px}
+  .d-lips{width:85px;left:-10px;top:1660px}
+  .d-soulmate{width:105px;right:-10px;top:1810px}
+  .d-cars{width:100px;left:-10px;top:2050px}
+  .d-flower{width:90px;right:-10px;top:2220px}
   .hero{padding-top:55px}
   .music-card{grid-template-columns:1fr;padding:30px;gap:28px}
   .record{width:170px;height:170px;margin:auto}
