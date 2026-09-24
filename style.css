@@ -41,29 +41,29 @@ a{color:inherit}
   width:auto;
   height:auto;
   object-fit:contain;
-  opacity:.78;
-  filter:saturate(.78);
+  opacity:.62;
+  filter:saturate(.72);
   mix-blend-mode:multiply;
-  transition:transform .5s ease, opacity .3s ease;
 }
-.d-heart{width:145px;left:3%;top:85px;transform:rotate(-8deg)}
-.d-note{width:125px;right:7%;top:120px;transform:rotate(7deg)}
-.d-memories{width:125px;left:8%;top:520px;transform:rotate(-4deg)}
-.d-moon{width:145px;right:5%;top:600px;transform:rotate(5deg)}
-.d-bandage{width:58px;left:18%;top:760px;transform:rotate(-13deg)}
-.d-camera{width:175px;right:3%;top:930px;transform:rotate(5deg)}
-.d-loved{width:110px;left:4%;top:1120px;transform:rotate(-6deg)}
-.d-stars{width:155px;right:7%;top:1250px;transform:rotate(4deg)}
-.d-lips{width:125px;left:7%;top:1480px;transform:rotate(-5deg)}
-.d-soulmate{width:165px;right:4%;top:1610px;transform:rotate(5deg)}
-.d-cars{width:150px;left:3%;top:1830px;transform:rotate(-3deg)}
-.d-flower{width:125px;right:8%;top:2020px;transform:rotate(5deg)}
-.d-sticks{width:120px;left:8%;top:2240px;transform:rotate(-4deg)}
-.d-monkey{width:110px;right:8%;top:2440px;transform:rotate(5deg)}
+/* A primeira tela fica limpa: os adesivos são pequenos detalhes, não protagonistas. */
+.d-heart{width:72px;left:8%;top:165px;transform:rotate(-8deg)}
+.d-note{width:78px;right:10%;top:185px;transform:rotate(7deg)}
+.d-memories{width:76px;left:10%;top:650px;transform:rotate(-4deg)}
+.d-moon{width:88px;right:9%;top:770px;transform:rotate(5deg)}
+.d-bandage{width:38px;left:18%;top:1080px;transform:rotate(-13deg)}
+.d-camera{width:100px;right:8%;top:1190px;transform:rotate(5deg)}
+.d-loved{width:72px;left:8%;top:1390px;transform:rotate(-6deg)}
+.d-stars{width:95px;right:10%;top:1510px;transform:rotate(4deg)}
+.d-lips{width:75px;left:11%;top:1720px;transform:rotate(-5deg)}
+.d-soulmate{width:100px;right:8%;top:1840px;transform:rotate(5deg)}
+.d-cars{width:100px;left:7%;top:2070px;transform:rotate(-3deg)}
+.d-flower{width:85px;right:10%;top:2200px;transform:rotate(5deg)}
+.d-sticks{width:80px;left:11%;top:2400px;transform:rotate(-4deg)}
+.d-monkey{width:75px;right:11%;top:2530px;transform:rotate(5deg)}
 
 h1,h2{font-family:"Playfair Display",serif}
 h1{
-  font-size:clamp(4rem,11vw,8.5rem);
+  font-size:clamp(3.6rem,8vw,7rem);
   line-height:.85;
   margin:22px 0 24px;
   font-weight:600;
@@ -183,17 +183,21 @@ h1 span{font-family:"Caveat",cursive;color:var(--rose);font-weight:400}
 footer{text-align:center;padding:25px;color:#9a898c;font-family:"Caveat",cursive;font-size:1.3rem}
 
 @media(max-width:700px){
-  .decor-item{opacity:.5}
-  .d-heart{width:90px;left:-15px;top:70px}
-  .d-note{width:85px;right:-5px;top:150px}
-  .d-memories{width:80px;left:-5px;top:520px}
-  .d-moon{width:90px;right:-10px;top:620px}
-  .d-camera{width:110px;right:-15px;top:1020px}
-  .d-loved{width:80px;left:-10px;top:1250px}
-  .d-lips{width:85px;left:-10px;top:1660px}
-  .d-soulmate{width:105px;right:-10px;top:1810px}
-  .d-cars{width:100px;left:-10px;top:2050px}
-  .d-flower{width:90px;right:-10px;top:2220px}
+  .decor-item{opacity:.48}
+  .d-heart{width:52px;left:2%;top:115px}
+  .d-note{width:58px;right:2%;top:155px}
+  .d-memories{width:55px;left:2%;top:560px}
+  .d-moon{width:62px;right:1%;top:690px}
+  .d-bandage{width:30px;left:10%;top:980px}
+  .d-camera{width:72px;right:1%;top:1100px}
+  .d-loved{width:55px;left:2%;top:1290px}
+  .d-stars{width:65px;right:3%;top:1450px}
+  .d-lips{width:58px;left:3%;top:1640px}
+  .d-soulmate{width:75px;right:1%;top:1780px}
+  .d-cars{width:72px;left:1%;top:1980px}
+  .d-flower{width:62px;right:2%;top:2150px}
+  .d-sticks{width:58px;left:3%;top:2330px}
+  .d-monkey{width:55px;right:3%;top:2460px}
   .hero{padding-top:55px}
   .music-card{grid-template-columns:1fr;padding:30px;gap:28px}
   .record{width:170px;height:170px;margin:auto}
