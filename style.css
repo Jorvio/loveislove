@@ -20,6 +20,7 @@ body{
     var(--paper);
   font-family:"DM Sans",sans-serif;
   overflow-x:hidden;
+  overflow-x:clip;
 }
 body:before{
   content:"";
@@ -29,53 +30,121 @@ body:before{
 }
 a{color:inherit}
 .grain{position:fixed;inset:0;pointer-events:none;z-index:10}
-.decor-layer{
-  position:absolute;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none;
-  z-index:0;
-}
+/* =====================================================================
+   DECORAÇÃO (adesivos)
+   Cada seção tem seu próprio <div class="decor"> com os adesivos dentro.
+   Assim eles sempre acompanham a seção, não importa a altura da tela.
+
+   Como ajustar um adesivo (classe .d-nome lá embaixo):
+   --w  largura no desktop         --y  posição vertical (% da seção)
+   --c  posição horizontal na "margem" lateral (0 = colado no conteúdo,
+        1 = na borda da tela). Só vale para as seções, não para o topo.
+   --r  rotação
+   --mw / --mx / --my  = largura / distância da lateral / altura no celular
+   ===================================================================== */
+.decor{position:absolute;inset:0;pointer-events:none}
 .decor-item{
   position:absolute;
-  width:auto;
+  top:var(--y);
+  width:min(var(--w), calc((100vw - 100%) / 2 * .78)); /* nunca invade o conteúdo */
   height:auto;
-  object-fit:contain;
-  opacity:.62;
-  filter:saturate(.72);
+  rotate:var(--r,0deg);
+  opacity:.74;
+  filter:saturate(.75);
   mix-blend-mode:multiply;
 }
-/* A primeira tela fica limpa: os adesivos são pequenos detalhes, não protagonistas. */
-.d-heart{width:72px;left:8%;top:165px;transform:rotate(-8deg)}
-.d-note{width:78px;right:10%;top:185px;transform:rotate(7deg)}
-.d-memories{width:76px;left:10%;top:650px;transform:rotate(-4deg)}
-.d-moon{width:88px;right:9%;top:770px;transform:rotate(5deg)}
-.d-bandage{width:38px;left:18%;top:1080px;transform:rotate(-13deg)}
-.d-camera{width:100px;right:8%;top:1190px;transform:rotate(5deg)}
-.d-loved{width:72px;left:8%;top:1390px;transform:rotate(-6deg)}
-.d-stars{width:95px;right:10%;top:1510px;transform:rotate(4deg)}
-.d-lips{width:75px;left:11%;top:1720px;transform:rotate(-5deg)}
-.d-soulmate{width:100px;right:8%;top:1840px;transform:rotate(5deg)}
-.d-cars{width:100px;left:7%;top:2070px;transform:rotate(-3deg)}
-.d-flower{width:85px;right:10%;top:2200px;transform:rotate(5deg)}
-.d-sticks{width:80px;left:11%;top:2400px;transform:rotate(-4deg)}
-.d-monkey{width:75px;right:11%;top:2530px;transform:rotate(5deg)}
+/* seções: o adesivo fica centrado dentro da margem lateral */
+.decor-item.l{left:calc((100% - 100vw) / 2 * var(--c,.5));translate:-50% 0}
+.decor-item.r{right:calc((100% - 100vw) / 2 * var(--c,.5));translate:50% 0}
+/* topo: tela inteira, então usamos % da largura */
+.hero .decor-item{width:var(--w);translate:none}
+.hero .decor-item.l{left:var(--x)}
+.hero .decor-item.r{right:var(--x)}
+
+/* entrada suave ao rolar (só se o JS estiver ativo) */
+.js .decor-item{opacity:0;scale:.82;transition:opacity .9s ease,scale .9s cubic-bezier(.2,.9,.3,1.2)}
+.js .decor-item.visible{opacity:.74;scale:1}
+
+/* ---- topo ---- */
+.d-heart{--w:74px;--x:9%;--y:16%;--r:-8deg;--mw:46px;--mx:5%;--my:24px}
+.d-note{--w:82px;--x:10%;--y:18%;--r:7deg;--mw:52px;--mx:5%;--my:36px}
+.d-favorite{--w:120px;--x:5%;--y:46%;--r:-6deg;--mw:76px;--mx:2%;--my:calc(100% - 82px)}
+.d-sunshine{--w:135px;--x:4%;--y:50%;--r:5deg;--mw:84px;--mx:2%;--my:calc(100% - 74px)}
+.d-memories{--w:82px;--x:11%;--y:73%;--r:-4deg;--mw:58px;--mx:4%;--my:26%}
+.d-moon{--w:96px;--x:9%;--y:84%;--r:5deg;--mw:66px;--mx:4%;--my:24.5%}
+
+/* ---- música ---- */
+.d-lips{--w:88px;--c:.5;--y:14%;--r:-8deg;--mw:52px;--mx:3%;--my:-10px}
+.d-cars{--w:120px;--c:.5;--y:52%;--r:4deg;--mw:78px;--mx:3%;--my:-14px}
+.d-bandage{--w:36px;--c:.5;--y:82%;--r:-14deg;--mw:24px;--mx:9%;--my:calc(100% - 96px)}
+
+/* ---- carta ---- */
+.d-seal{--w:84px;--c:.5;--y:10%;--r:-6deg;--mw:52px;--mx:4%;--my:-8px}
+.d-quote{--w:112px;--c:.5;--y:26%;--r:5deg;--mw:78px;--mx:3%;--my:calc(100% - 66px)}
+.d-loved{--w:80px;--c:.5;--y:58%;--r:-7deg;--mw:54px;--mx:5%;--my:calc(100% - 60px)}
+.d-stars{--w:104px;--c:.5;--y:76%;--r:4deg;--mw:70px;--mx:3%;--my:-16px}
+
+/* ---- galeria ---- */
+.d-camera{--w:110px;--c:.5;--y:3%;--r:5deg;--mw:56px;--mx:0%;--my:15%}
+.d-soulmate{--w:130px;--c:.5;--y:17%;--r:-5deg;--mw:60px;--mx:0%;--my:34%}
+.d-monkeys{--w:96px;--c:.5;--y:32%;--r:5deg;--mw:52px;--mx:0%;--my:44.5%}
+.d-flower{--w:82px;--c:.5;--y:47%;--r:-4deg;--mw:40px;--mx:1%;--my:63%}
+.d-sticks{--w:84px;--c:.5;--y:62%;--r:5deg;--mw:46px;--mx:1%;--my:74%}
+.d-myman{--w:92px;--c:.5;--y:78%;--r:-6deg;--mw:54px;--mx:0%;--my:88.5%}
+
+/* ---- final ---- */
+.d-monkeyflower{--w:112px;--c:.5;--y:22%;--r:-4deg;--mw:70px;--mx:3%;--my:-18px}
+.d-paper{--w:56px;--c:.5;--y:52%;--r:6deg;--mw:36px;--mx:6%;--my:calc(100% - 96px)}
+
+/* ---- telas médias e celular: sem margem lateral sobrando, então os
+   adesivos viram "colados" nos cantos dos cartões e nas folgas entre blocos ---- */
+@media(max-width:1180px){
+  .decor-item,.hero .decor-item{width:var(--mw);top:var(--my);z-index:2;opacity:.82}
+  .decor-item.l,.decor-item.r,.hero .decor-item.l,.hero .decor-item.r{translate:none}
+  .js .decor-item.visible{opacity:.82}
+  .decor-item.l,.hero .decor-item.l{left:var(--mx);right:auto}
+  .decor-item.r,.hero .decor-item.r{right:var(--mx);left:auto}
+}
+
+/* tablet: um pouco maiores que no celular */
+@media(min-width:701px) and (max-width:1180px){
+  .decor-item,.hero .decor-item{width:calc(var(--mw) * 1.3)}
+}
+
+/* ---------- topo da página ---------- */
+.hero{
+  position:relative;
+  min-height:100vh;min-height:100svh;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(44px,7vh,80px) 24px 48px;
+  text-align:center;
+}
+.hero-inner{position:relative;z-index:1;width:100%;max-width:820px;margin:0 auto}
+.eyebrow,.tiny,.section-label{
+  font-size:.76rem;letter-spacing:.24em;text-transform:lowercase;color:var(--rose);font-weight:500;
+}
+.eyebrow{display:inline-flex;align-items:center;gap:14px}
+.eyebrow:before,.eyebrow:after{content:"";width:30px;height:1px;background:var(--line)}
+.tiny{margin:0}
+.section-label{display:flex;align-items:center;gap:16px;margin-bottom:6px}
+.section-label:after{content:"";flex:1;height:1px;background:var(--line)}
+.section>:not(.decor){position:relative;z-index:1}
 
 h1,h2{font-family:"Playfair Display",serif}
 h1{
   font-size:clamp(3.6rem,8vw,7rem);
-  line-height:.85;
-  margin:22px 0 24px;
+  line-height:.95;
+  margin:18px 0 22px;
   font-weight:600;
   letter-spacing:-.055em;
 }
 h1 span{font-family:"Caveat",cursive;color:var(--rose);font-weight:400}
 .hero-sub{
-  max-width:560px;margin:0 auto 38px;
+  max-width:560px;margin:0 auto 34px;
   color:var(--muted);line-height:1.8;font-size:.98rem;
 }
 .hero-photo{
-  width:min(390px,88vw);
+  width:min(360px,86vw);
   margin:0 auto;
   background:#fff;
   padding:10px 10px 44px;
@@ -90,7 +159,7 @@ h1 span{font-family:"Caveat",cursive;color:var(--rose);font-weight:400}
   margin-top:10px;
 }
 .scroll-cue{
-  display:block;width:40px;height:40px;margin:35px auto 0;
+  display:block;width:40px;height:40px;margin:28px auto 0;
   border:1px solid var(--line);border-radius:50%;
   text-decoration:none;line-height:38px;color:var(--rose);
 }
@@ -183,21 +252,6 @@ h1 span{font-family:"Caveat",cursive;color:var(--rose);font-weight:400}
 footer{text-align:center;padding:25px;color:#9a898c;font-family:"Caveat",cursive;font-size:1.3rem}
 
 @media(max-width:700px){
-  .decor-item{opacity:.48}
-  .d-heart{width:52px;left:2%;top:115px}
-  .d-note{width:58px;right:2%;top:155px}
-  .d-memories{width:55px;left:2%;top:560px}
-  .d-moon{width:62px;right:1%;top:690px}
-  .d-bandage{width:30px;left:10%;top:980px}
-  .d-camera{width:72px;right:1%;top:1100px}
-  .d-loved{width:55px;left:2%;top:1290px}
-  .d-stars{width:65px;right:3%;top:1450px}
-  .d-lips{width:58px;left:3%;top:1640px}
-  .d-soulmate{width:75px;right:1%;top:1780px}
-  .d-cars{width:72px;left:1%;top:1980px}
-  .d-flower{width:62px;right:2%;top:2150px}
-  .d-sticks{width:58px;left:3%;top:2330px}
-  .d-monkey{width:55px;right:3%;top:2460px}
   .hero{padding-top:55px}
   .music-card{grid-template-columns:1fr;padding:30px;gap:28px}
   .record{width:170px;height:170px;margin:auto}
@@ -215,3 +269,8 @@ footer{text-align:center;padding:25px;color:#9a898c;font-family:"Caveat",cursive
 
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
 .reveal.visible{opacity:1;transform:translateY(0)}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .js .decor-item,.reveal{transition:none}
+}
