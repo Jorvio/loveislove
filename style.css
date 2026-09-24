@@ -94,7 +94,6 @@ a{color:inherit}
 
 /* ---- final ---- */
 .d-monkeyflower{--w:112px;--c:.5;--y:22%;--r:-4deg;--mw:70px;--mx:3%;--my:-18px}
-.d-paper{--w:56px;--c:.5;--y:52%;--r:6deg;--mw:36px;--mx:6%;--my:calc(100% - 96px)}
 
 /* ---- telas médias e celular: sem margem lateral sobrando, então os
    adesivos viram "colados" nos cantos dos cartões e nas folgas entre blocos ---- */
